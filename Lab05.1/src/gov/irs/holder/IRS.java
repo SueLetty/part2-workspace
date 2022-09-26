@@ -53,7 +53,7 @@ public class IRS {
   }
   
   private static class IRSHolder {
-    private static IRS instance = new IRS();
+    private static final IRS instance = new IRS();
     
     // so we can see when IRS.IRSHolder class is loaded
     static {

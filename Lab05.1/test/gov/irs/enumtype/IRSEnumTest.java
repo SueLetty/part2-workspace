@@ -28,14 +28,16 @@ public class IRSEnumTest {
    */
   @Test
   public void testSingleton() {
-    
+    IRS irs1 = IRS.getInstance();
+    IRS irs2 = IRS.getInstance();
+    assertSame(irs1, irs2);
   }
   
   @Test
   public void testClassLoading() {
     // TODO: call IRSEnum.touch() and note the output - the call to IRSEnum.getInstance() should be commented out for this
-    
+//    IRSEnum.touch();;
     // TODO: call IRSEnum.getInstance() and note the output - the call to IRSEnum.touch() should be commented out for this
-    
+    IRSEnum.getInstance();
   }
 }
