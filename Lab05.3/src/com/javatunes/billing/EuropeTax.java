@@ -15,6 +15,16 @@ package com.javatunes.billing;
  *  
  * TODO: implement this algorithm.
  */
-public class EuropeTax {
-
+public class EuropeTax implements TaxCalculator{
+  public static final double BASIC_RATE = 0.17;
+  public static final double LUXURY_TAX_RATE = 0.25;
+  public static final int LUXURY_THRESHOLD = 100;
+  @Override
+  public double taxAmount(double taxable) {
+    double tax = taxable * BASIC_RATE;
+    if(taxable > 100){
+      tax += (taxable - LUXURY_THRESHOLD) * LUXURY_TAX_RATE;
+    }
+    return tax;
+  }
 }
