@@ -19,21 +19,22 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginApp
-extends JFrame {
+    extends JFrame {
+
   private JLabel nameLabel = new JLabel("Username: ");
   private JLabel passwordLabel = new JLabel("Password: ");
   private JTextField nameField = new JTextField(12);
   private JTextField passwordField = new JPasswordField(12);
   private JButton loginButton = new JButton("OK");
   private JLabel messageLabel = new JLabel();
-  
+
   public LoginApp() {
     super("Please Log In");
     buildUI();
     setFrameOptions();
-    
+
     // NOTE: pass references to my privates that the listener needs to do its job
-    loginButton.addActionListener(new LoginAppListener(nameField, passwordField, messageLabel));
+    loginButton.addActionListener(new LoginAppListener());
   }
 
   private void buildUI() {
@@ -52,9 +53,29 @@ extends JFrame {
     setLocationRelativeTo(null);
     pack();
   }
-  
-  
+
+
   public static void main(String[] args) {
     new LoginApp().setVisible(true);
+  }
+
+  private class LoginAppListener
+      implements ActionListener {
+
+
+    /**
+     * The heart of an ActionListener - this gets called when the event is fired. Need to authenticate
+     * the user and display appropriate message on the UI.
+     */
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+      if ("derek".equals(nameField.getText()) && "smalls".equals(passwordField.getText())) {
+        messageLabel.setText("Login successful!");
+      } else {
+        messageLabel.setText("Sorry, try again");
+      }
+      nameField.setText("");
+      passwordField.setText("");
+    }
   }
 }
