@@ -15,5 +15,7 @@ public class SimplePrinterTest {
     thd1.start();
     
     // TODO: create another Thread, passing in a lambda as its Runnable - then start it
+    Thread thd2 = new Thread(()->System.out.println("simple-lambda"));
+    thd2.start();
   }
 }
