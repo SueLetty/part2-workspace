@@ -13,13 +13,13 @@ public class RepeatingPrinterTest {
   public static void main(String[] args) {
     Thread thd1 = new Thread(new RepeatingPrinter());
     thd1.start();
-
+    String lambdaMessage = "block-lambda";
     // TODO: initialize the 'printer' reference variable with a block lambda
     // hint: you can copy / paste the *contents* of RepeatingPrinter's run() method
     // note: change the sysout to show "block-lambda"
     Runnable printer = () -> {
       while (true) {
-        System.out.println("block-lambda");
+        System.out.println(lambdaMessage);
         try {
           Thread.sleep(1000);
         } catch (InterruptedException e) {
