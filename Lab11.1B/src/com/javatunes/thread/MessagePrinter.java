@@ -8,14 +8,15 @@
 package com.javatunes.thread;
 
 // DONE: extend the Thread class
-public class MessagePrinter extends Thread {
-  private String message;
+public class MessagePrinter implements Runnable {
+  private final String message;
+  private final String name;
   private int interval = 500;  // default value
   
   public MessagePrinter(String message) {
     this.message = message;
     // DONE: set the thread name [important when debugging]
-    setName("Message Printer");
+    name = getClass().getSimpleName();
   }
   
   public MessagePrinter(String message, int interval) {
@@ -34,8 +35,10 @@ public class MessagePrinter extends Thread {
    */
   @Override
   public void run() {
+    Thread currentThread = Thread.currentThread();
+    currentThread.setName(name);
     for (int i = 0; i < 10; i++) {
-      System.out.println(getName() + ": " + message);
+      System.out.println(currentThread.getName() + ": " + message);
       try {
         Thread.sleep(interval);
       }
