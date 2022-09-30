@@ -36,8 +36,15 @@ extends Thread {
    * If it's not, there's something wrong, so we show "****" to indicate that.
    */
   private void displayBalances() {
-    int balance1 = acct1.getBalance();
-    int balance2 = acct2.getBalance();
+    int balance1;
+    int balance2;
+    
+    synchronized (acct1) {
+      synchronized (acct2) {
+        balance1 = acct1.getBalance();
+        balance2 = acct2.getBalance();
+      }
+    }
     
     StringBuffer msg = new StringBuffer("\n");
     if ((balance1 + balance2) != 2000) {  // balance total incorrect?
